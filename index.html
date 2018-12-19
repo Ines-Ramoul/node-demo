@@ -2,21 +2,518 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Intro to NodeJS and MongoDB</title>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
-
     <body>
-    <h1>Intro to Node and MongoDB</h1>
-    <form method="post" action="/addname">
-      <label>Enter Your Name</label><br>
-      <input type="text" name="name" placeholder="Enter name..." required>
-      <label> What's your current job ? </label><br>
-      <label><input type="checkbox" name="job" value="Conf">Configurateur</label>
-      <label><input type="checkbox" name="job" value="Doc">Documentaliste</label>
-      <label><input type="checkbox" name="job" value="Resp">Responsable CMI</label>
-      <input type="text" name="job" placeholder="Autre">
-
-      <input type="submit" value="Add Name">
-    </form>
- 
-    </body>
+            <h1>Questionnaire : capture des besoins CADM</h1>
+        
+            <p> Ce questionnaire vise à connaître vos attentes dans le cadre du développement d'un nouvel intranet CADM. Le but étant de dresser un cahier des charges, je vous prie de bien prendre le temps de répondre à chaque question vous concernant. Les réponses collectées seront strictement anonymes, les champs Nom et Prénom ne servent qu'à assurer l'unicité de l'envoi du formulaire par chaque collaborateur.</p>
+        
+            <form method="post" action="/formsubmitted" >
+                    <style type="text/css">
+                        input:required:invalid, input:focus:invalid, textarea:required:invalid {
+                            background-image: url(https://www.the-art-of-web.com/images/invalid.png);
+                            background-position: right top;
+                            background-repeat: no-repeat;
+                        }
+                        input:required:valid, textarea:required:valid {
+                            background-image: url(https://www.the-art-of-web.com/images/valid.png);
+                            background-position: right top;
+                            background-repeat: no-repeat;
+                        }
+        
+                    </style>
+            <div class="form-group">
+                    <span class="form_col">Votre nom :</span>
+        
+                    <br />
+        
+                    <input name="lastName" id="name" type="text"  required />
+    
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Votre prénom :</span>
+        
+                    <br />
+        
+                    <input name="firstName" id="name" type="text"  required/>
+        
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Sur quel site êtes vous localisé ? </span>
+        
+                    <br />
+        
+                    <label><input name="site" type="radio" value="C" />Cannes</label>
+        
+                    <br />
+        
+                    <label><input name="site" type="radio" value="T" />Toulouse</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez votre site TAS</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Vous êtes : </span>
+        
+                    <br />
+        
+                    <label><input name="metier" type="checkbox" value="configurateur" />Configuration Manager</label>
+        
+                    <br />
+        
+                    <label><input name="metier" type="checkbox" value="documentaliste" />Documentation Manager</label>
+        
+                    <br />
+        
+                    <label><input name="metier" type="checkbox" value="resp_cmi" />Responsable Comité de Modification Industriel</label>
+        
+                    <br />
+        
+                    <input name="metier" id="metier" type="text" placeholder="Autre" />
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez votre fonction</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Quel(s) outil(s) de configuration utilisez-vous ?</span>
+        
+                    <br />
+        
+                    <label><input name="outil" type="checkbox" value="3IT" />3IT</label>
+        
+                    <br />
+        
+                    <label><input name="outil" type="checkbox" value="PALMA" />PALMA</label>
+        
+                    <br />
+        
+                    <label><input name="outil" type="checkbox" value="TSI" />TSI</label>
+        
+                    <br />
+        
+                    <label><input name="outil" type="checkbox" value="WAND" />WAND</label>
+        
+                    <br />
+        
+                    <input name="outil" type="text" placeholder="Autre" />
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez votre fonction</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Vous travaillez sur un projet type : </span>
+        
+                    <br />
+        
+                    <label><input name="projet" type="checkbox" value="software" />Software</label>
+        
+                    <br />
+        
+                    <label><input name="projet" type="checkbox" value="ligneprod" />Ligne de produit</label>
+        
+                    <br />
+        
+                    <label><input name="projet" type="checkbox" value="service" />Service</label>
+        
+                    <br />
+        
+                    <label><input name="projet" type="checkbox" value="prod" />Produits</label>
+        
+                    <br />
+        
+                    <input name="projet" id="projet" type="text" placeholder="Autre" />
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez un ou plusieurs types de projets </span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Sur quels programmes travaillez-vous ? Veuillez répondre en séparant le nom de chaque programme par une virgule </span>
+        
+                    <br />
+        
+                    <textarea name="programmes" id ="programmes" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Quelles tâches redondantes effectuez-vous sur votre outil? </span>
+        
+                    <br />
+        
+                    <textarea name="task" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Quelles sont les fonctionnalités PALMA que vous souhaiteriez simplifier ? </span>
+        
+                    <br />
+        
+                    <textarea name="functions" cols="25" required ></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Quelles fonctionnalités complémentaires que vous voudriez apporter à PALMA ? </span>
+        
+                    <br />
+        
+                    <textarea name="funcadd" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Où cherchez-vous de l'information relative à l'utilisation de votre outil ? </span>
+        
+                    <br />
+        
+                    <textarea name="search" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Connaissez-vous la communauté ECM CADM ?</span>
+        
+                    <br />
+        
+                    <label><input name="ecm" type="radio" value="oui" />Oui</label>
+        
+                    <br />
+        
+                    <label><input name="ecm" type="radio" value="non" />Non</label>
+        
+                    <span class="tooltip">Vous devez sélectionnez une réponse</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Si oui, à quelle fréquence l'utilisez-vous ? </span>
+        
+                    <br />
+        
+                    <label><input name="ecm_freq" type="radio" value="1week" />1 fois par semaine</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_freq" type="radio" value="1month" />Au moins 1 fois par mois</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_freq" type="radio" value="1-2year" />1 à 2 fois par an</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_freq" type="radio" value="projectneeds" />Cela dépend des projets</label>
+        
+                    <span class="tooltip">Vous devez sélectionnez une réponse</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Evaluez la navigation sur ECM sur une échelle de 1 (facile) à 5 (très difficile) : </span>
+        
+                    <br />
+        
+                    <label><input name="ecm_nav" type="radio" value="1" />1</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_nav" type="radio" value="2" />2</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_nav" type="radio" value="3" />3</label>
+                    <br />
+        
+                    <label><input name="ecm_nav" type="radio" value="4" />4</label>
+        
+                    <br />
+        
+                    <label><input name="ecm_nav" type="radio" value="5" />5</label>
+        
+                    <span class="tooltip">Vous devez sélectionnez une note</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Connaissez-vous le wiki PALMA ?</span>
+        
+                    <br />
+        
+                    <label><input name="wiki" type="radio" value="oui" />Oui</label>
+        
+                    <br />
+        
+                    <label><input name="wiki" type="radio" value="non" />Non</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une des 2 réponses</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Si oui, à quelle fréquence l'utilisez-vous ? </span>
+        
+                    <br />
+        
+                    <label><input name="wiki_freq" type="radio" value="1week" />1 fois par semaine</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_freq" type="radio" value="1month" />Au moins 1 fois par mois</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_freq" type="radio" value="1-2year" />1 à 2 fois par an</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_freq" type="radio" value="projectneeds" />Cela dépend des projets</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une réponse</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Evaluez la navigation sur le wiki PALMA sur une échelle de 1 (facile) à 5 (très difficile) : </span>
+        
+                    <br />
+        
+                    <label><input name="wiki_nav" type="radio" value="1" />1</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_nav" type="radio" value="2" />2</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_nav" type="radio" value="3" />3</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_nav" type="radio" value="4" />4</label>
+        
+                    <br />
+        
+                    <label><input name="wiki_nav" type="radio" value="5" />5</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une note</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Connaissez-vous l'intranet CADM actuel ?</span>
+        
+                    <br />
+        
+                    <label><input name="intranet" type="radio" value="oui" />Oui</label>
+        
+                    <br />
+        
+                    <label><input name="intranet" type="radio" value="non" />Non</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une des 2 réponses</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Si oui, à quelle fréquence l'utilisez-vous ? </span>
+        
+                    <br />
+        
+                    <label><input name="intranet_freq" type="radio" value="1week" />1 fois par semaine</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_freq" type="radio" value="1month" />Au moins 1 fois par mois</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_freq" type="radio" value="1-2year" />1 à 2 fois par an</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_freq" type="radio" value="projectneeds" />Cela dépend des projets</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une réponse</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Evaluez la navigation sur l'intranet CADM sur une échelle de 1 (facile) à 5 (très difficile) : </span>
+        
+                    <br />
+        
+                    <label><input name="intranet_nav" type="radio" value="1" />1</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_nav" type="radio" value="2" />2</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_nav" type="radio" value="3" />3</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_nav" type="radio" value="4" />4</label>
+        
+                    <br />
+        
+                    <label><input name="intranet_nav" type="radio" value="5" />5</label>
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez une note</span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Pour quelles raisons seriez-vous amené à surfer sur l'intranet CADM ?</span>
+        
+                    <br />
+        
+                    <textarea name="raison" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Seriez-vous intéressé par une partie collaborative ?</span>
+        
+                    <br />
+        
+                    <textarea name="collab" cols="25" required></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Si oui, dans quel but ?</span>
+        
+                    <br />
+        
+                    <textarea name="but" cols="25"></textarea>
+        
+                    <span class="tooltip"></span>
+        
+                    <br /><br />
+        
+         
+        
+                    <span class="form_col">Que souhaitez-vous retrouver dans un intranet CADM ?</span>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="templates" />Des templates</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="aidePalma" />Aide pratique sur l'outil PALMA et autres</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="forum" />Forum d'aide participatif (où chaque collaborateur peut intervenir)</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="news" />News TAS CADM JV</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="suggestion" />Possibilité d'emettre des suggestions pour l'amélioration des méthodes de travail</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="howTo" />Une page HOW TO afin que vous puissiez partager votre solution à un problème rencontré sur PALMA, processus, etc...</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="annuaire" />Tous les contacts CADM TAS JV</label>
+        
+                    <br />
+        
+                    <label><input name="besoin_intranet" type="checkbox" value="trombinoscope" />Un trombinoscope CADM</label>
+        
+                    <br />
+        
+                    <input name="besoin_intranet" id="besoin_intranet" type="text" placeholder="Autre" />
+        
+                    <br />
+        
+                    <span class="tooltip">Vous devez sélectionnez un ou plusieurs souhaits, c'est Noël :-) </span>
+        
+                    <br /><br /><br />
+                    <span class="form_col"></span>
+        
+                    <p>
+                        <input type="submit" name="submit" value="Submit" />
+                        <input type="reset" value="Reset the form" />
+                    </p>
+      
+                
+               
+            </div>
+        </form>
+        </body>
 </html>
